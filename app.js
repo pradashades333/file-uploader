@@ -4,6 +4,9 @@ const session = require("express-session");
 const passport = require("passport");
 require("./db/passport");
 
+const indexRouter = require("./routes/index");
+app.use("/", indexRouter);
+
 const app = express();
 
 app.set("view engine", "ejs");
