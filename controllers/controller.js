@@ -31,5 +31,17 @@ module.exports = {
 
     logInGet: async(req,res) => {
         res.render("auth/log-in")
+    },
+
+    logInPost: passport.authenticate("local", {
+        successRedirect: "/",
+        failureRedirect: "/log-in"
+    }),
+
+    logOut:async (req,res, next) => {
+        req.logout((err) => {
+        if (err) return next(err);
+        res.redirect("/");
+        });
     }
 }
