@@ -71,4 +71,15 @@ module.exports = {
         }
     },
 
+    editFolderGet: async (req, res, next) => {
+    try {
+        const folder = await prisma.folder.findUnique({
+            where: { id: parseInt(req.params.id) }
+        });
+        res.render("folders/edit", { folder });
+    } catch (err) {
+        next(err);
+    }
+}
+
 }
