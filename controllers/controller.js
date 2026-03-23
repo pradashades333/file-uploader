@@ -16,5 +16,18 @@ module.exports = {
 
     signUpGet: async (req,res) => {
         res.render("auth/sign-up")
+    },
+
+    signUpPost: async(req,res,next) => {
+        try {
+            const {email, password } = req.body;
+            const hashedPassword = await bcrypt.hash(password, 10)
+            await prisma.user.create({ data: { email, password: hashedPassword } })
+            res.redirect("/log-in")
+        } catch (err) {
+            next(err)
+        }
+
+
     }
 }
