@@ -57,5 +57,18 @@ module.exports = {
         } catch (err) {
             next(err)
         }
-    }
+    },
+
+    showFolder: async (req, res, next) => {
+        try {
+            const folder = await prisma.folder.findUnique({
+                where: { id: parseInt(req.params.id) },
+                include: { files: true }
+            });
+            res.render("folders/show", { folder });
+        } catch (err) {
+            next(err);
+        }
+    },
+
 }
