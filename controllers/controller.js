@@ -46,6 +46,16 @@ module.exports = {
     },
 
     newFolderGet: async (req,res) => {
-        res.render("folder/new")
+        res.render("folders/new")
+    },
+
+    newFolderPost: async (req,res, next) => {
+        try {
+            const {name} = req.body
+            await prisma.folder.create({data:{name,userId: req.user.id}})
+            res.redirect("/")
+        } catch (err) {
+            next(err)
+        }
     }
 }
