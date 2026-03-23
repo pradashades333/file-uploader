@@ -43,5 +43,9 @@ module.exports = {
         if (err) return next(err);
         res.redirect("/");
         });
+    },
+
+    newFolderGet: async (req,res) => {
+        res.render("folder/new")
     }
 }
