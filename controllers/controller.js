@@ -27,7 +27,9 @@ module.exports = {
         } catch (err) {
             next(err)
         }
+    },
 
-
+    logInGet: async(req,res) => {
+        res.render("auth/log-in")
     }
 }
