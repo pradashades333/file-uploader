@@ -95,7 +95,12 @@ module.exports = {
         }
     },
 
-    deleteFolder: async (req,res) => {
-        
+    deleteFolder: async (req,res, next) => {
+        try{
+            await prisma.folder.delete({ where: { id: parseInt(req.params.id)}})
+            res.redirect("/")
+        } catch (err) {
+            next(err)
+        }
     }
 }
