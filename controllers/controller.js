@@ -2,7 +2,6 @@ const prisma = require("../db/prisma");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
-const folders = await prisma.folder.findMany({ where: { userId: req.user.id } });
 
 module.exports = {
     index: async (req, res, next) => {
@@ -106,7 +105,7 @@ module.exports = {
 
     showFile:async(req,res,next) => {
         try {
-        const folder = await prisma.file.findUnique({
+        const file = await prisma.file.findUnique({
             where: { id: parseInt(req.params.id) },
             include: { file: true }
         });
@@ -132,4 +131,13 @@ module.exports = {
             next(err);
         }
     },
+
+    deleteFile:async(req,res, next) => {
+        try{
+            await prisma.file.delete({ where: { id: parseInt(req.params.id)}})
+            res.redirect("/")
+        } catch (err) {
+            next(err)
+        }
+    }
 }
