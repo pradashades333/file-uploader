@@ -114,5 +114,22 @@ module.exports = {
         } catch (err) {
             next(err);
         }
-    }
+    },
+
+    uploadFile: async (req, res, next) => {
+        try {
+            await prisma.file.create({
+                data: {
+                    name: req.file.originalname,
+                    size: req.file.size,
+                    url: req.file.path,
+                    userId: req.user.id,
+                    folderId: req.body.folderId ? parseInt(req.body.folderId) : null
+                }
+            });
+            res.redirect("/");
+        } catch (err) {
+            next(err);
+        }
+    },
 }
