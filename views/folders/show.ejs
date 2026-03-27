@@ -4,16 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= folder.name %></title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+            margin: 0;
+            background: #f0eaff;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            min-width: 400px;
+            border-top: 4px solid #7c3aed;
+        }
+        h1, h2 {
+            color: #7c3aed;
+            margin-top: 0;
+        }
+        a {
+            color: #7c3aed;
+        }
+        .file-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #f0eaff;
+        }
+        button {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #b91c1c;
+        }
+        .upload-form {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        input[type="submit"] {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #6d28d9;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <div class="container">
         <h1><%= folder.name %></h1>
 
         <a href="/">Back to Home</a>
 
         <h2>Files</h2>
         <% folder.files.forEach(file => { %>
-            <div>
+            <div class="file-row">
                 <a href="/files/<%= file.id %>"><%= file.name %></a>
                 <form action="/files/<%= file.id %>/delete" method="POST">
                     <button type="submit">Delete</button>
@@ -21,7 +80,7 @@
             </div>
         <% }) %>
 
-        <form action="/files" method="POST" enctype="multipart/form-data">
+        <form action="/files" method="POST" enctype="multipart/form-data" class="upload-form">
             <input type="hidden" name="folderId" value="<%= folder.id %>">
             <input type="file" name="file">
             <input type="submit" value="Upload File">
