@@ -4,6 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log-In</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+        }
+        .login-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-width: 300px;
+        }
+        input {
+            padding: 0.5rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        input[type="submit"]:hover {
+            background: #555;
+        }
+    </style>
 </head>
 <body>
     <div>
